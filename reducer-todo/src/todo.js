@@ -24,16 +24,14 @@ const handleComplete = e => {
 
    return (
         <div>
-            {!state.completed ? (
             <h1>
                 {state.map((item) => { 
                     return <h2><button onClick={handleComplete}>{item.item}</button></h2>
                 })}
-            </h1>) : (
-                <div>
-                    {!state.completed}
-                </div>
-            )}
+            </h1>
+            <div>
+                {!state.completed}
+            </div>
             <form onSubmit={handleSubmit}>
                 <input name='new-todo' type='text' value={newTodo} onChange={handleChanges} />
                 <button onClick={handleAddTodo}>Add New Item</button>
