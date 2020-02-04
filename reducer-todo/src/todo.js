@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from 'react';
 
-import { initialState, todoReducer, newItems} from './reducers/index';
+import { initialState, todoReducer} from './reducers/index';
 
-const Todo = () => {
+const Todo = props => {
    const [state, dispatch] = useReducer(todoReducer, initialState);
    const [newTodo, setNewTodo] = useState('');
 
@@ -18,15 +18,27 @@ const handleSubmit = e => {
     e.preventDefault();
 }
 
+const handleComplete = e => {
+    dispatch({ type: 'TOGGLE_COMPLETE' })
+}
+
    return (
-       <div>
-           {state.item}
-           {state.newItems}
-        <form onSubmit={handleSubmit}>
-            <input name='new-todo' type='text' value={newTodo} onChange={handleChanges} />
-            <button onClick={handleAddTodo}>Add New Item</button>
-        </form>
-       </div>
+        <div>
+            {!state.completed ? (
+            <h1>
+                {state.map((item) => { 
+                    return <h2><button onClick={handleComplete}>{item.item}</button></h2>
+                })}
+            </h1>) : (
+                <div>
+                    {!state.completed}
+                </div>
+            )}
+            <form onSubmit={handleSubmit}>
+                <input name='new-todo' type='text' value={newTodo} onChange={handleChanges} />
+                <button onClick={handleAddTodo}>Add New Item</button>
+            </form>
+        </div>
    )
 }
 
