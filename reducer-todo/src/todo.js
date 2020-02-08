@@ -22,16 +22,12 @@ const handleComplete = e => {
     dispatch({ type: 'TOGGLE_COMPLETE' })
 }
 
+console.log(state)
    return (
         <div>
-            <h1>
                 {state.map((item) => { 
-                    return <h2><button onClick={handleComplete}>{item.item}</button></h2>
+                    return <h1><button onClick={handleComplete}>{item.item}</button></h1>
                 })}
-            </h1>
-            <div>
-                {!state.completed}
-            </div>
             <form onSubmit={handleSubmit}>
                 <input name='new-todo' type='text' value={newTodo} onChange={handleChanges} />
                 <button onClick={handleAddTodo}>Add New Item</button>
